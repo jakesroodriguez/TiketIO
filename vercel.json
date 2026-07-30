@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd tiketio-app-v54 && npm install && npm run build",
+  "outputDirectory": "tiketio-app-v54/dist",
+  "framework": "create-react-app"
+}
