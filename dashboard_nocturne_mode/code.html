@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TiketIO Saving Dashboard - Nocturne</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#57dea3",
+                    "surface-container-lowest": "#0b0f10",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#ebbe9b",
+                    "surface-container": "#1c2022",
+                    "on-tertiary": "#2a3040",
+                    "on-tertiary-fixed-variant": "#404757",
+                    "on-error": "#690005",
+                    "primary-container": "#2ebd85",
+                    "inverse-on-surface": "#2d3133",
+                    "outline": "#86948a",
+                    "on-primary-container": "#00462d",
+                    "on-secondary-fixed": "#2d1602",
+                    "inverse-primary": "#006c48",
+                    "mint-glow": "rgba(46, 189, 133, 0.15)",
+                    "earth-accent": "#D4A373",
+                    "on-tertiary-fixed": "#151b2a",
+                    "secondary": "#ebbe9b",
+                    "surface-container-highest": "#313537",
+                    "surface-secondary": "#161E2E",
+                    "on-primary-fixed": "#002113",
+                    "secondary-fixed": "#ffdcc2",
+                    "tertiary-fixed": "#dce2f6",
+                    "primary-fixed-dim": "#57dea3",
+                    "surface-primary": "#0A111F",
+                    "on-primary": "#003824",
+                    "surface-dim": "#101416",
+                    "secondary-container": "#624227",
+                    "surface-container-high": "#262b2c",
+                    "surface-variant": "#313537",
+                    "surface": "#101416",
+                    "on-primary-fixed-variant": "#005235",
+                    "on-tertiary-container": "#363c4c",
+                    "on-surface-variant": "#bccabf",
+                    "on-secondary-fixed-variant": "#5f4025",
+                    "on-background": "#e0e3e5",
+                    "primary-fixed": "#77fbbd",
+                    "on-surface": "#e0e3e5",
+                    "tertiary-fixed-dim": "#c0c6da",
+                    "tertiary": "#c0c6da",
+                    "surface-tertiary": "#222B3D",
+                    "on-secondary-container": "#dcb08d",
+                    "tertiary-container": "#a0a7ba",
+                    "on-error-container": "#ffdad6",
+                    "background": "#101416",
+                    "outline-variant": "#3d4a42",
+                    "surface-bright": "#363a3c",
+                    "inverse-surface": "#e0e3e5",
+                    "primary": "#57dea3",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#181c1e",
+                    "on-secondary": "#462a11"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-desktop": "2.5rem",
+                    "gutter": "1.5rem",
+                    "container-padding-mobile": "1.25rem",
+                    "unit": "8px",
+                    "section-gap": "4rem"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "data-lg": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0A111F;
+            color: #e0e3e5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-donut {
+            transform: rotate(-90deg);
+        }
+        .neon-line {
+            filter: drop-shadow(0 0 8px rgba(87, 222, 163, 0.6));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Anchor (Manual Implementation of TopAppBar JSON Logic) -->
+<header class="w-full top-0 sticky z-40 bg-surface-primary border-b border-surface-tertiary flex items-center justify-between px-container-padding-mobile md:px-container-padding-desktop h-16">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-secondary transition-colors p-2 rounded-full active:scale-95 duration-150" data-icon="menu">menu</button>
+</div>
+<div class="flex flex-col items-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-tighter text-primary">EL GRÁFICO OCULTO</h1>
+<div class="flex items-center gap-1 bg-surface-tertiary px-3 py-0.5 rounded-full mt-1">
+<span class="material-symbols-outlined text-[12px] text-earth-accent">location_on</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">CP: 28001</span>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full border border-earth-accent/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a refined executive with neutral lighting. The background is a deep navy blue, matching the Nocturne aesthetic of the dashboard. The subject wears a charcoal grey minimalist suit, projecting trustworthiness and focus. Soft side-lighting highlights facial contours without harsh shadows, maintaining a clean Swiss-inspired flat look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx5QYEwAkqUwLms5qXMPfTVVnjgq2modV0i-ToQFnCJzwvJP8n9GHq1oKEHr3JN-JHVmH6CWrhlXJr8Z0YdF8P1A1H7QhawTCMs4PrMRX3CjPSNGoDGVOiNLDNO2mNahkiTrdCi_MQsbRnGhNrxHvhExoSeFUIXkuBAz9l98jRqGHJakBEwoQt6QsQO0NlZwrQ8AOTj1rxUa25i28KdT59t4omF_gLq6UHWy6z7M-P-bJxzECpPl5ovWy3Cvy-kKI3V4J6aa97FYM"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-padding-mobile md:px-container-padding-desktop pt-8 pb-32">
+<!-- Dashboard Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Section 1: Alimentación (Bento Cell) -->
+<section class="md:col-span-7 bg-surface-secondary rounded-lg p-8 border border-outline-variant/20">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Alimentación</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">CONSUMO SEMANAL ESTIMADO</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+</div>
+<div class="flex items-end justify-between h-48 gap-3">
+<!-- Bars -->
+<div class="flex-1 group">
+<div class="bg-surface-tertiary w-full h-32 rounded-t-lg relative overflow-hidden transition-all duration-300 group-hover:bg-surface-bright">
+<div class="absolute bottom-0 w-full bg-primary h-[60%] rounded-t-sm"></div>
+</div>
+<p class="text-center font-label-md text-[10px] text-on-surface-variant mt-3">LUN</p>
+</div>
+<div class="flex-1 group">
+<div class="bg-surface-tertiary w-full h-40 rounded-t-lg relative overflow-hidden transition-all duration-300 group-hover:bg-surface-bright">
+<div class="absolute bottom-0 w-full bg-primary h-[85%] rounded-t-sm"></div>
+</div>
+<p class="text-center font-label-md text-[10px] text-on-surface-variant mt-3">MAR</p>
+</div>
+<div class="flex-1 group">
+<div class="bg-surface-tertiary w-full h-24 rounded-t-lg relative overflow-hidden transition-all duration-300 group-hover:bg-surface-bright">
+<div class="absolute bottom-0 w-full bg-surface-tertiary h-[100%] border-t border-primary/30"></div>
+</div>
+<p class="text-center font-label-md text-[10px] text-on-surface-variant mt-3">MIE</p>
+</div>
+<div class="flex-1 group">
+<div class="bg-surface-tertiary w-full h-48 rounded-t-lg relative overflow-hidden transition-all duration-300 group-hover:bg-surface-bright">
+<div class="absolute bottom-0 w-full bg-primary h-[95%] rounded-t-sm"></div>
+</div>
+<p class="text-center font-label-md text-[10px] text-on-surface-variant mt-3">JUE</p>
+</div>
+<div class="flex-1 group">
+<div class="bg-surface-tertiary w-full h-36 rounded-t-lg relative overflow-hidden transition-all duration-300 group-hover:bg-surface-bright">
+<div class="absolute bottom-0 w-full bg-primary h-[70%] rounded-t-sm"></div>
+</div>
+<p class="text-center font-label-md text-[10px] text-on-surface-variant mt-3">VIE</p>
+</div>
+<div class="flex-1 group">
+<div class="bg-surface-tertiary w-full h-28 rounded-t-lg relative overflow-hidden transition-all duration-300 group-hover:bg-surface-bright">
+<div class="absolute bottom-0 w-full bg-primary h-[40%] rounded-t-sm"></div>
+</div>
+<p class="text-center font-label-md text-[10px] text-on-surface-variant mt-3">SAB</p>
+</div>
+</div>
+</section>
+<!-- Section 2: Cosmética (Bento Cell) -->
+<section class="md:col-span-5 bg-surface-secondary rounded-lg p-8 border border-outline-variant/20 flex flex-col items-center">
+<div class="w-full mb-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Cosmética</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">REPARTO DE CATEGORÍA</p>
+</div>
+<div class="relative w-48 h-48">
+<svg class="w-full h-full chart-donut" viewbox="0 0 36 36">
+<path class="text-surface-tertiary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-linecap="round" stroke-width="4"></path>
+<path class="text-on-primary-fixed-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="15, 100" stroke-dashoffset="-75" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-data-lg text-data-lg text-primary">75%</span>
+<span class="font-label-md text-[10px] text-on-surface-variant">OPTIMIZADO</span>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-x-8 gap-y-2 w-full">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-label-md text-[11px] text-on-surface">Higiene</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-on-primary-fixed-variant"></div>
+<span class="font-label-md text-[11px] text-on-surface">Fragancia</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-tertiary"></div>
+<span class="font-label-md text-[11px] text-on-surface">Tratamiento</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Total Savings (Hero Bento Cell) -->
+<section class="md:col-span-12 bg-surface-secondary rounded-lg p-10 border border-earth-accent/20 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-10 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[160px] text-primary" data-icon="trending_up">trending_up</span>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div>
+<p class="font-label-md text-label-md text-primary tracking-widest mb-2">SAVINGS PROJECTION 2024</p>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">€ 14.820,40</h2>
+<div class="flex items-center gap-2 mt-4">
+<span class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                                +12.4%
+                            </span>
+<span class="text-on-surface-variant text-body-sm font-body-sm">vs. trimestre anterior</span>
+</div>
+</div>
+<div class="flex-1 max-w-md h-32 relative">
+<!-- Simplified Neon Trendline via SVG -->
+<svg class="w-full h-full neon-line" preserveaspectratio="none" viewbox="0 0 400 100">
+<path d="M0,80 Q50,75 100,60 T200,50 T300,20 T400,10" fill="none" stroke="#57dea3" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0,80 Q50,75 100,60 T200,50 T300,20 T400,10 V100 H0 Z" fill="url(#gradient-mint)" opacity="0.1"></path>
+<defs>
+<lineargradient id="gradient-mint" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#57dea3;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#57dea3;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="flex justify-between mt-2">
+<span class="font-label-md text-[10px] text-on-surface-variant">ENE</span>
+<span class="font-label-md text-[10px] text-on-surface-variant">FEB</span>
+<span class="font-label-md text-[10px] text-on-surface-variant">MAR</span>
+<span class="font-label-md text-[10px] text-on-surface-variant">ABR</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Data Table (Swiss Detail) -->
+<section class="md:col-span-12 bg-surface-secondary rounded-lg border border-outline-variant/20 overflow-hidden">
+<div class="px-8 py-6 border-b border-surface-tertiary flex justify-between items-center">
+<h3 class="font-headline-lg text-[20px] text-on-surface">Últimos movimientos</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">VER TODO</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-tertiary/30">
+<th class="px-8 py-4 font-label-md text-on-surface-variant">CONCEPTO</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant">CATEGORÍA</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant text-right">CANTIDAD</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant text-right">AHORRO TiketIO</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-tertiary">
+<tr class="hover:bg-surface-tertiary/20 transition-colors">
+<td class="px-8 py-6 font-body-md text-on-surface">Supermercado BioLife</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-tertiary rounded-full text-label-md font-label-md">ALIMENTACIÓN</span>
+</td>
+<td class="px-8 py-6 font-data-lg text-[16px] text-right">€ 84,20</td>
+<td class="px-8 py-6 font-data-lg text-[16px] text-primary text-right">+ € 12,30</td>
+</tr>
+<tr class="hover:bg-surface-tertiary/20 transition-colors">
+<td class="px-8 py-6 font-body-md text-on-surface">Pharmacia Moderna</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-tertiary rounded-full text-label-md font-label-md">COSMÉTICA</span>
+</td>
+<td class="px-8 py-6 font-data-lg text-[16px] text-right">€ 142,00</td>
+<td class="px-8 py-6 font-data-lg text-[16px] text-primary text-right">+ € 35,50</td>
+</tr>
+<tr class="hover:bg-surface-tertiary/20 transition-colors">
+<td class="px-8 py-6 font-body-md text-on-surface">Mercado Local Central</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-tertiary rounded-full text-label-md font-label-md">ALIMENTACIÓN</span>
+</td>
+<td class="px-8 py-6 font-data-lg text-[16px] text-right">€ 32,15</td>
+<td class="px-8 py-6 font-data-lg text-[16px] text-primary text-right">+ € 4,80</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Shell (From Shared Components JSON) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-8">
+<div class="bg-surface-secondary/80 backdrop-blur-md border border-outline-variant/30 shadow-2xl w-[calc(100%-2.5rem)] md:max-w-md rounded-full flex justify-around items-center h-16 px-2">
+<!-- Market -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md mt-0.5">Market</span>
+</a>
+<!-- Portfolio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md mt-0.5">Portfolio</span>
+</a>
+<!-- Insights (Active) -->
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-full px-4 py-1 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-label-md text-label-md mt-0.5">Insights</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-0.5">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interaction for the donut chart
+        document.addEventListener('DOMContentLoaded', () => {
+            const donutPaths = document.querySelectorAll('.chart-donut path');
+            donutPaths.forEach(path => {
+                const length = path.getTotalLength();
+                path.style.transition = 'none';
+                path.style.strokeDasharray = length + ' ' + length;
+                path.style.strokeDashoffset = length;
+                path.getBoundingClientRect(); // Trigger reflow
+                path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+                path.style.strokeDashoffset = '0';
+            });
+        });
+    </script>
+</body></html>

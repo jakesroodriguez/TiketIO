@@ -1,0 +1,262 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TiketIO - Dietary Preferences</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Hanken Grotesk Font -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "error": "#ba1a1a",
+                    "primary": "#006c48",
+                    "on-surface": "#191c1e",
+                    "background": "#f7f9fb",
+                    "outline": "#6d7a71",
+                    "secondary-container": "#7efaba",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#77fbbd",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "surface-bright": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "surface": "#f7f9fb",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#dae2fd",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#9fa7c0",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary-fixed": "#7efaba",
+                    "primary-fixed-dim": "#57dea3",
+                    "on-secondary-fixed-variant": "#005233",
+                    "secondary": "#006c46",
+                    "on-background": "#191c1e",
+                    "tertiary": "#565e74",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#002113",
+                    "on-primary-fixed-variant": "#005235",
+                    "secondary-fixed-dim": "#60dda0",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary-fixed": "#002112",
+                    "inverse-primary": "#57dea3",
+                    "on-primary-container": "#00462d",
+                    "on-surface-variant": "#3d4a42",
+                    "surface-tint": "#006c48",
+                    "outline-variant": "#bccabf",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "on-error": "#ffffff",
+                    "primary-container": "#2ebd85",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-surface": "#2d3133",
+                    "surface-container": "#eceef0",
+                    "on-secondary-container": "#00734a",
+                    "on-tertiary-fixed": "#131b2e",
+                    "on-tertiary-container": "#353c51",
+                    "earth-brown": "#321400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    "squircle": "32px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "glass-padding": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .primary-gradient-btn {
+            background: linear-gradient(135deg, #2EBD85 0%, #1AA870 100%);
+            box-shadow: 0 12px 24px rgba(46, 189, 133, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .primary-gradient-btn:hover {
+            box-shadow: 0 16px 32px rgba(46, 189, 133, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .primary-gradient-btn:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: 0 6px 12px rgba(46, 189, 133, 0.2);
+        }
+
+        .dietary-tag {
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .dietary-tag.active {
+            border: 1px solid #321400;
+            background: rgba(255, 255, 255, 0.9);
+            color: #321400;
+            font-weight: 600;
+        }
+
+        .step-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e0e3e5;
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator.active {
+            width: 24px;
+            border-radius: 8px;
+            background: #006c48;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-container-margin relative overflow-hidden">
+<!-- Atmospheric background effect -->
+<div class="fixed top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary-container opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-[-5%] left-[-5%] w-[40%] h-[40%] bg-secondary-container opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
+<!-- Header Section (TopAppBar guidance mapping) -->
+<header class="w-full top-0 sticky flex justify-center items-center px-6 py-4 bg-background z-50">
+<div class="w-full max-w-lg flex justify-between items-center">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="font-display-lg text-display-lg-mobile font-bold text-primary">TiketIO</h1>
+<div class="w-6"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center w-full max-w-lg">
+<!-- Step Messaging -->
+<div class="text-center mb-8">
+<div class="flex justify-center space-x-2 mb-6">
+<div class="step-indicator"></div>
+<div class="step-indicator"></div>
+<div class="step-indicator active"></div>
+</div>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-widest mb-2">Paso 3 de 3</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">Configura tu perfil</h2>
+</div>
+<!-- Glassmorphic Container -->
+<div class="glass-container w-full p-glass-padding rounded-squircle flex flex-col space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Preferencias</h3>
+<span class="material-symbols-outlined text-outline-variant">restaurant_menu</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Dinos qué alimentos prefieres evitar para personalizar tus recomendaciones de ahorro.
+            </p>
+<div class="flex flex-wrap gap-3 py-2">
+<!-- Interactive Tags -->
+<button class="dietary-tag border border-transparent bg-surface-container-low px-6 py-3 rounded-full font-label-md text-label-md text-on-surface-variant cursor-pointer" onclick="toggleTag(this)">
+                    Vegano
+                </button>
+<button class="dietary-tag border border-transparent bg-surface-container-low px-6 py-3 rounded-full font-label-md text-label-md text-on-surface-variant cursor-pointer" onclick="toggleTag(this)">
+                    Sin Gluten
+                </button>
+<button class="dietary-tag border border-transparent bg-surface-container-low px-6 py-3 rounded-full font-label-md text-label-md text-on-surface-variant cursor-pointer" onclick="toggleTag(this)">
+                    Sin Lactosa
+                </button>
+<button class="dietary-tag border border-transparent bg-surface-container-low px-6 py-3 rounded-full font-label-md text-label-md text-on-surface-variant cursor-pointer" onclick="toggleTag(this)">
+                    Fitness
+                </button>
+<button class="dietary-tag border border-transparent bg-surface-container-low px-6 py-3 rounded-full font-label-md text-label-md text-on-surface-variant cursor-pointer" onclick="toggleTag(this)">
+                    Keto
+                </button>
+<button class="dietary-tag border border-transparent bg-surface-container-low px-6 py-3 rounded-full font-label-md text-label-md text-on-surface-variant cursor-pointer" onclick="toggleTag(this)">
+                    Vegetariano
+                </button>
+</div>
+<!-- Additional Context - Microcopy -->
+<div class="bg-surface-container-highest/30 p-4 rounded-xl flex items-start space-x-3">
+<span class="material-symbols-outlined text-primary text-lg">info</span>
+<p class="text-[12px] leading-tight text-on-surface-variant">
+                    Podrás cambiar estas preferencias en cualquier momento desde los ajustes de tu cuenta.
+                </p>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-12 w-full">
+<button class="primary-gradient-btn w-full py-5 rounded-full text-on-primary font-headline-sm text-headline-sm tracking-wide">
+                Finalizar
+            </button>
+<p class="text-center mt-6 font-label-md text-label-md text-outline cursor-pointer hover:text-primary transition-colors">
+                Omitir este paso por ahora
+            </p>
+</div>
+</main>
+<!-- Footer Elements (Hidden Nav Shell for transactional screen) -->
+<!-- As per instructions: "You MUST exclude the navigation shell if the page intent is: Login, Sign-up, Onboarding, Checkout..." -->
+<script>
+        function toggleTag(el) {
+            el.classList.toggle('active');
+            
+            // Add a little physical feedback effect
+            el.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                el.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // Vanilla JS for minor atmospheric movement
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 100;
+            const moveY = (e.clientY - window.innerHeight / 2) / 100;
+            
+            const blurs = document.querySelectorAll('.fixed.pointer-events-none');
+            blurs[0].style.transform = `translate(${moveX}px, ${moveY}px)`;
+            blurs[1].style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+        });
+    </script>
+</body></html>

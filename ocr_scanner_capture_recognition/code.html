@@ -1,0 +1,283 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TiketIO - Scanner OCR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container": "#eceef0",
+                    "on-primary-fixed-variant": "#005235",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "tertiary-fixed": "#dae2fd",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "inverse-primary": "#57dea3",
+                    "secondary-fixed": "#7efaba",
+                    "on-surface-variant": "#3d4a42",
+                    "on-secondary-fixed": "#002112",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#00734a",
+                    "tertiary-container": "#9fa7c0",
+                    "tertiary": "#565e74",
+                    "primary-container": "#2ebd85",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#57dea3",
+                    "surface-tint": "#006c48",
+                    "on-surface": "#191c1e",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006c46",
+                    "outline": "#6d7a71",
+                    "on-tertiary-container": "#353c51",
+                    "on-secondary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "secondary-container": "#7efaba",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005233",
+                    "surface-dim": "#d8dadc",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e0e3e5",
+                    "surface-bright": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#77fbbd",
+                    "outline-variant": "#bccabf",
+                    "inverse-surface": "#2d3133",
+                    "primary": "#006c48",
+                    "surface-container-low": "#f2f4f6",
+                    "on-background": "#191c1e",
+                    "on-tertiary-fixed": "#131b2e",
+                    "secondary-fixed-dim": "#60dda0",
+                    "on-primary-fixed": "#002113",
+                    "on-primary-container": "#00462d",
+                    "night-blue": "#121E36",
+                    "earth-brown": "#321400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    "panel": "32px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "unit": "8px",
+                    "glass-padding": "24px",
+                    "container-margin": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(300px); opacity: 0; }
+        }
+        .scan-line {
+            animation: scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            background: linear-gradient(90deg, transparent, #2EBD85, transparent);
+            box-shadow: 0 0 15px #2EBD85;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+        .btn-mint-gradient {
+            background: linear-gradient(135deg, #2EBD85 0%, #1AA870 100%);
+            box-shadow: 0 12px 24px rgba(46, 189, 133, 0.25);
+            transition: all 0.2s ease;
+        }
+        .btn-mint-gradient:active {
+            transform: scale(0.95);
+            box-shadow: 0 4px 12px rgba(46, 189, 133, 0.2);
+        }
+        .btn-brown {
+            background-color: #321400;
+            box-shadow: 0 12px 24px rgba(50, 20, 0, 0.15);
+            transition: all 0.2s ease;
+        }
+        .btn-brown:active {
+            transform: scale(0.95);
+        }
+        .pill-item {
+            background: rgba(247, 249, 251, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background 0.2s ease;
+        }
+        .pill-item:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Header -->
+<header class="bg-surface/70 backdrop-blur-xl sticky top-0 z-40 border-b border-white/40 shadow-sm flex items-center justify-between px-gutter h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-primary active:scale-95 duration-100 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile font-bold tracking-tighter text-primary">El Gráfico Oculto</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-white/40">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a modern fintech executive with a friendly expression. The lighting is soft and airy, matching a light-mode UI aesthetic. The background is a clean, neutral gradient. The style is high-fidelity and contemporary, reflecting corporate professionalism and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoVO2wv8bHUiLxJJHNLOE6BwWWYmCH5WcfaSWmxiZuDf39FTL8im33g5hmioW22BzunUPcy9Tku4UsUEw9XhBsi84z79z2c6E-00jYcw4-bcMqKSb9rognG6U-sVR8vt2Jn_a0qsyeaon_mN_X_sZn9lf--8RPv2JIuWyUvU35puAMLGdjbnOYkmleXHP4dk2XsGCiCg59xt9I9veA7iilU9_FlRsUfdbGmSG6lArciwF2A4b-rgcqc0WSQ1VemI3IsB7qRXkyWc4">
+</div>
+</header>
+<main class="flex-1 flex flex-col">
+<!-- Top Section: Scanner Viewport -->
+<section class="relative h-[397px] md:h-[442px] bg-night-blue overflow-hidden flex flex-col items-center justify-center p-gutter">
+<!-- Simulated Camera Feed Background -->
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover grayscale brightness-50" data-alt="A close-up, high-angle shot of a crumpled supermarket receipt lying on a clean, light gray minimalist surface. The lighting is crisp and detailed, showing the texture of the paper and printed ink. The scene is slightly blurred to simulate a camera lens focus, maintaining a premium tech-focused aesthetic for a scanner interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4RJkSRjAjF7T0QOBA6pVeS3fSZxKelBnBNlVI14O4oX9jqfvhnBan4_J0st6GKUXhA1M-C2BAU6ykNYz1V94i3SfPwg_5LtdScVAGffbacsYNRoGMJWOEd2V6SPyY4laRiljHe8k2kFiDyHK4foOfua2vmoGHAjq5CsBtsHVf35Ab1VMQZ5AKry1XsW3nP2wN1dsRJE0c5IkPQIb3K1amVoW9WMv4nWCqmk_nDnu0r6PUi46iHi9wzmyxHqIBtuio2jv4TGjG01w">
+</div>
+<!-- Scanning Reticle -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 border-2 border-primary-container/40 rounded-[48px] flex items-center justify-center overflow-hidden">
+<!-- Inner Corners -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary-container rounded-tl-3xl"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary-container rounded-tr-3xl"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary-container rounded-bl-3xl"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary-container rounded-br-3xl"></div>
+<!-- Moving Scan Line -->
+<div class="absolute top-0 left-0 w-full h-[4px] scan-line z-10"></div>
+<p class="text-white/60 font-label-md text-label-md uppercase tracking-widest text-center px-8 z-10 pointer-events-none">Alinee el recibo aquí</p>
+</div>
+<!-- Viewport Action Buttons -->
+<div class="mt-8 flex gap-4 z-20">
+<button class="btn-mint-gradient text-white px-6 py-3 rounded-full font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined">videocam</span>
+                    Activar Cámara
+                </button>
+<button class="btn-brown text-white px-6 py-3 rounded-full font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                    Simular Recibo
+                </button>
+</div>
+</section>
+<!-- Bottom Section: Recognition Panel -->
+<section class="flex-1 bg-surface relative -mt-8 rounded-t-[32px] p-6 pb-32">
+<div class="glass-panel rounded-panel p-glass-padding max-w-2xl mx-auto min-h-[300px]">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-night-blue">Detección en tiempo real</h2>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm animate-pulse">Procesando...</span>
+</div>
+<!-- Recognition List -->
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="pill-item rounded-full px-5 py-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+<div class="flex flex-col">
+<span class="text-night-blue font-semibold font-body-md">Manzanas Orgánicas</span>
+<span class="text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">Comida</span>
+</div>
+</div>
+<span class="text-earth-brown font-bold text-body-lg">4,50€</span>
+</div>
+<!-- Item 2 -->
+<div class="pill-item rounded-full px-5 py-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">sanitizer</span>
+<div class="flex flex-col">
+<span class="text-night-blue font-semibold font-body-md">Crema Facial Hidratante</span>
+<span class="text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">Cosmética</span>
+</div>
+</div>
+<span class="text-earth-brown font-bold text-body-lg">18,90€</span>
+</div>
+<!-- Item 3 -->
+<div class="pill-item rounded-full px-5 py-3 flex items-center justify-between shadow-sm border-dashed border-primary/30">
+<div class="flex items-center gap-3 opacity-60">
+<span class="material-symbols-outlined text-on-surface-variant">hourglass_empty</span>
+<div class="flex flex-col">
+<span class="text-night-blue font-semibold font-body-md">Detectando siguiente item...</span>
+</div>
+</div>
+<div class="w-16 h-4 bg-surface-container-high animate-pulse rounded-full"></div>
+</div>
+</div>
+<!-- Summary -->
+<div class="mt-8 pt-6 border-t border-night-blue/5 flex items-center justify-between px-2">
+<p class="text-on-surface-variant font-label-md">Total Detectado (2 items)</p>
+<p class="text-night-blue font-extrabold text-headline-sm">23,40€</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button for Saving -->
+<button class="fixed bottom-28 left-1/2 -translate-x-1/2 w-16 h-16 btn-mint-gradient rounded-full text-white z-[60] flex items-center justify-center shadow-[0_12px_24px_rgba(46,189,133,0.4)] hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">save</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-48px)] max-w-md z-50 bg-white/70 backdrop-blur-2xl border border-white/40 shadow-[0_20px_40px_rgba(0,0,0,0.06)] rounded-full flex justify-around items-center p-unit">
+<button class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button class="flex items-center justify-center bg-primary text-on-primary rounded-full w-12 h-12 shadow-[0_12px_24px_rgba(46,189,133,0.25)] active:translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined">account_balance</span>
+</button>
+<button class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for simulator button
+        const simBtn = document.querySelector('.btn-brown');
+        const itemsList = document.querySelector('.space-y-3');
+
+        simBtn.addEventListener('click', () => {
+            const newItem = document.createElement('div');
+            newItem.className = 'pill-item rounded-full px-5 py-3 flex items-center justify-between shadow-sm transform scale-95 opacity-0 transition-all duration-500';
+            newItem.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+                    <div class="flex flex-col">
+                        <span class="text-night-blue font-semibold font-body-md">Café Arábica</span>
+                        <span class="text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">Comida</span>
+                    </div>
+                </div>
+                <span class="text-earth-brown font-bold text-body-lg">3,20€</span>
+            `;
+            itemsList.insertBefore(newItem, itemsList.children[2]);
+            
+            setTimeout(() => {
+                newItem.classList.remove('scale-95', 'opacity-0');
+            }, 100);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TiketIO - Configuración</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "inverse-primary": "#57dea3",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "tertiary-fixed": "#dae2fd",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005235",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container": "#eceef0",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#57dea3",
+                    "surface-tint": "#006c48",
+                    "on-surface": "#191c1e",
+                    "tertiary": "#565e74",
+                    "primary-container": "#2ebd85",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#00734a",
+                    "tertiary-container": "#9fa7c0",
+                    "secondary-fixed": "#7efaba",
+                    "on-surface-variant": "#3d4a42",
+                    "on-secondary-fixed": "#002112",
+                    "surface-variant": "#e0e3e5",
+                    "surface-bright": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#7efaba",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005233",
+                    "surface-dim": "#d8dadc",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#353c51",
+                    "on-secondary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006c46",
+                    "outline": "#6d7a71",
+                    "on-tertiary-fixed": "#131b2e",
+                    "secondary-fixed-dim": "#60dda0",
+                    "on-primary-fixed": "#002113",
+                    "on-primary-container": "#00462d",
+                    "on-background": "#191c1e",
+                    "primary": "#006c48",
+                    "surface-container-low": "#f2f4f6",
+                    "primary-fixed": "#77fbbd",
+                    "outline-variant": "#bccabf",
+                    "inverse-surface": "#2d3133",
+                    "night-blue": "#121E36",
+                    "earth-brown": "#321400",
+                    "mint-green": "#2EBD85",
+                    "emerald-green": "#1AA870"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.25rem",
+                    "3xl": "1.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "glass-padding": "24px",
+                    "container-margin": "24px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #f7f9fb;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        border-radius: 28px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .glass-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+      }
+
+      .pro-card-gradient {
+        background: linear-gradient(135deg, #2EBD85 0%, #1AA870 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pro-card-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        background-image: radial-gradient(circle at 2px 2px, #121E36 1px, transparent 0);
+        background-size: 24px 24px;
+      }
+
+      .toggle-switch {
+        width: 48px;
+        height: 24px;
+        background: #e0e3e5;
+        border-radius: 9999px;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .toggle-switch.active {
+        background: linear-gradient(135deg, #2EBD85, #1AA870);
+      }
+
+      .toggle-circle {
+        width: 18px;
+        height: 18px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .toggle-switch.active .toggle-circle {
+        transform: translateX(24px);
+      }
+
+      .dot-indicator {
+        width: 4px;
+        height: 4px;
+        background-color: #321400;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -8px;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      
+      .active-nav-dot {
+        font-variation-settings: 'FILL' 1;
+      }
+    </style>
+</head>
+<body class="font-body-md text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/40 h-16 flex items-center px-glass-padding justify-between shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
+<button class="material-symbols-outlined text-night-blue hover:opacity-80 transition-opacity" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-headline-sm text-headline-sm text-night-blue">Configuración</h1>
+<button class="material-symbols-outlined text-night-blue hover:opacity-80 transition-opacity" data-icon="more_vert">more_vert</button>
+</header>
+<!-- Main Content -->
+<main class="pt-24 px-container-margin max-w-lg mx-auto space-y-gutter">
+<!-- Pro Promotion Card -->
+<section class="pro-card-gradient rounded-3xl p-6 relative shadow-lg">
+<div class="pro-card-pattern"></div>
+<div class="relative z-10 flex flex-col items-start gap-4">
+<div class="space-y-1">
+<h2 class="font-headline-sm text-headline-sm text-night-blue">Desbloquea TiketIO Pro</h2>
+<p class="text-night-blue/80 font-body-md max-w-[240px]">
+                        Accede a reportes inteligentes y ahorra hasta un <span class="font-bold text-earth-brown">30% más</span> cada mes.
+                    </p>
+</div>
+<button class="bg-white px-6 py-3 rounded-full font-label-md text-night-blue shadow-[0_12px_24px_rgba(0,0,0,0.1)] active:scale-95 transition-transform">
+                    Mejorar a Pro
+                </button>
+</div>
+<!-- Decorative image -->
+<div class="absolute right-[-10px] bottom-[-10px] w-32 h-32 opacity-20 pointer-events-none" data-alt="A minimalist flat geometric abstract illustration of a golden trophy cup or award ribbon. The style is clean Swiss design with high-contrast sharp edges, primarily using Night Blue and Earth Brown tones on a transparent background to blend with the gradient." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7JbuEZssDEbq4VW-C_aPW6fu6TnZ_rN2eDHhx-9Js6uyZaCOOWJW-MMtEZkAQJRP2aTJs5-WhYckkDkTtmfr2CXG5z-g28LYdRD50TZynNi1pSvXrIy9kB8uDRwYE1Xjs1o2lflNySdVtYhcH9CLDpSsD2Bj2COvBwq7LqmyHdSsMbNmMHsU2WAg9EYtlWCo9LN1GDuZfpgQsTxOH8opeOk4LMa-Kj-YHpxjRghxihAWa59QIEtiEQuUr4mMIdTDDwfUlLPZwQBY')"></div>
+</section>
+<!-- Settings List -->
+<div class="space-y-4">
+<!-- Item: Cuenta -->
+<div class="glass-card p-5 flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-earth-brown/5 flex items-center justify-center text-earth-brown">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-night-blue">Cuenta</p>
+<p class="text-on-surface-variant font-label-sm">Perfil, seguridad, privacidad</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-night-blue transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Item: Ubicación -->
+<div class="glass-card p-5 flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-earth-brown/5 flex items-center justify-center text-earth-brown">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-night-blue">Ubicación</p>
+<p class="text-on-surface-variant font-label-sm">Gestionar tiendas cercanas</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-night-blue transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Item: Dietas -->
+<div class="glass-card p-5 flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-earth-brown/5 flex items-center justify-center text-earth-brown">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-night-blue">Dietas</p>
+<p class="text-on-surface-variant font-label-sm">Preferencias alimenticias</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-night-blue transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Item: Notificaciones (Toggle) -->
+<div class="glass-card p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-earth-brown/5 flex items-center justify-center text-earth-brown">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-night-blue">Notificaciones de Ahorro</p>
+<p class="text-on-surface-variant font-label-sm">Alertas de ofertas personalizadas</p>
+</div>
+</div>
+<div class="toggle-switch active" id="save-notif-toggle" onclick="toggleSwitch(this)">
+<div class="toggle-circle"></div>
+</div>
+</div>
+<!-- Item: Palermo -->
+<div class="glass-card p-5 flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-earth-brown/5 flex items-center justify-center text-earth-brown">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-night-blue">Palermo</p>
+<p class="text-on-surface-variant font-label-sm">Zona de búsqueda preferida</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-night-blue transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Appearance Section -->
+<div class="pt-4 pb-2">
+<h3 class="font-label-md text-earth-brown uppercase tracking-widest text-[10px] px-4 opacity-60">General</h3>
+</div>
+<div class="glass-card p-5 flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-earth-brown/5 flex items-center justify-center text-earth-brown">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-night-blue">Idioma</p>
+<p class="text-on-surface-variant font-label-sm">Español (España)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="translate">translate</span>
+</div>
+</div>
+<!-- Logout Button -->
+<div class="pt-8 pb-12 flex justify-center">
+<button class="flex items-center gap-2 text-error font-label-md hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Cerrar Sesión
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-6 right-6 z-50 bg-surface/70 backdrop-blur-xl border border-white/40 h-20 rounded-full flex justify-around items-center px-4 shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
+<div class="flex flex-col items-center justify-center w-12 h-12 text-night-blue cursor-pointer relative group">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<div class="dot-indicator hidden group-active:block"></div>
+</div>
+<div class="flex flex-col items-center justify-center w-12 h-12 text-night-blue cursor-pointer relative group">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<div class="dot-indicator hidden group-active:block"></div>
+</div>
+<div class="flex flex-col items-center justify-center w-12 h-12 text-night-blue cursor-pointer relative group">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<div class="dot-indicator hidden group-active:block"></div>
+</div>
+<!-- Active Tab: Person -->
+<div class="flex flex-col items-center justify-center w-12 h-12 text-earth-brown relative">
+<span class="material-symbols-outlined active-nav-dot" data-icon="person">person</span>
+<div class="dot-indicator block"></div>
+</div>
+</nav>
+<script>
+        function toggleSwitch(el) {
+            el.classList.toggle('active');
+        }
+
+        // Simple animation on scroll for cards
+        const cards = document.querySelectorAll('.glass-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body></html>
