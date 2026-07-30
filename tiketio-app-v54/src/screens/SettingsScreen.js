@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   StyleSheet, Text, View, ScrollView,
-  TouchableOpacity, Switch, Alert,
+  TouchableOpacity, Switch, Alert, Linking
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme, PALETTES, ISLAND_STYLES } from '../theme';
@@ -181,6 +181,23 @@ export default function SettingsScreen() {
         <Ionicons name="log-in-outline" size={20} color="#fff" />
         <Text style={styles.loginBtnText}>Iniciar sesión</Text>
       </TouchableOpacity>
+
+      {/* ── Botón de Autor ── */}
+      <View style={{ alignItems: 'center', marginTop: 32 }}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.authorBtn}
+          onPress={() => Linking.openURL('https://www.instagram.com/jakesroodriguez')}
+        >
+          <View style={styles.authorIconBubble}>
+            <Ionicons name="code-slash-outline" size={14} color="#9ca3af" />
+          </View>
+          <View style={styles.authorTextContainer}>
+            <Text style={styles.authorSubText}>DESIGNED & BUILT BY</Text>
+            <Text style={styles.authorMainText}>@jakesroodriguez</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
@@ -211,4 +228,9 @@ const makeStyles = (COLORS) => StyleSheet.create({
   settingSub: { fontSize: 12, marginTop: 1 },
   loginBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingVertical: 16, borderRadius: 20, marginTop: 8 },
   loginBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  authorBtn: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 20, paddingVertical: 10, backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', borderRadius: 30 },
+  authorIconBubble: { padding: 8, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  authorTextContainer: { flexDirection: 'column', alignItems: 'flex-start' },
+  authorSubText: { fontSize: 9, textTransform: 'uppercase', letterSpacing: 2, color: 'rgba(156, 163, 175, 0.6)', fontWeight: '500', marginBottom: 2 },
+  authorMainText: { fontSize: 14, fontWeight: '700', letterSpacing: 0.5, color: '#9ca3af' },
 });
